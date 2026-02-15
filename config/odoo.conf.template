@@ -1,0 +1,14 @@
+[options]
+admin_passwd = 
+
+db_host = db
+db_port = 5432
+db_user = 
+db_password = 
+
+addons_path = /mnt/extra-addons,/usr/lib/python3/dist-packages/odoo/addons
+data_dir = /var/lib/odoo
+
+#Logs (optional)
+logfile = /var/lib/odoo/odoo.log
+log_level = info

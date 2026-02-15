@@ -1,0 +1,25 @@
+FROM odoo:19.0
+
+USER root
+
+RUN apt-get update && apt-get install -y \
+    libldap2-dev \
+    libsasl2-dev \
+    gcc \
+    && rm -rf /var/lib/apt/lists/*
+
+
+COPY ./custom_addons /mnt/extra-addons
+
+
+COPY ./config/odoo.conf /opt/odoo/odoo.conf
+
+#USER odoo
+
+RUN chown -R odoo:odoo /mnt/extra-addons
+
+USER odoo
+
+EXPOSE 8069
+
+CMD ["odoo", "-c", "/opt/odoo/odoo.conf"]
