@@ -23,7 +23,7 @@ jobs:
 
       - name: Build & Push Image
         run: |
-          IMAGE=ghcr.io/anassamazzar/odoo-project:dev
+          IMAGE=ghcr.io/AnassAmazzar/odoo-project:dev
           docker build -t $IMAGE .
           docker push $IMAGE
 
