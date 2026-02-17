@@ -13,3 +13,6 @@ jobs:
       - name: Run a One-Line Script
         run: echo "Hello, world!"
 
+      - name: Login to GHCR
+        run: echo "${{ secrets.GITHUB_TOKEN }}"
+
