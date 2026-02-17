@@ -2,7 +2,8 @@ name: CI Pipeline for odoo project
 
 on:
   push:
-    branches: ["dev"]
+    branches:
+    - dev
 
 jobs:
   build:
@@ -11,3 +12,4 @@ jobs:
       - uses: actions/checkout@v4
       - name: Run a One-Line Script
         run: echo "Hello, world!"
+
