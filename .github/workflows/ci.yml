@@ -18,7 +18,7 @@ jobs:
 
       - name: Build & Push Image
         run: |
-          IMAGE=ghcr.io/${{ github.repository }}:dev
+          IMAGE=ghcr.io/anassamazzar/odoo-project:dev
           docker build -t $IMAGE .
           docker push $IMAGE
 
