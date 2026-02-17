@@ -15,15 +15,15 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-      - name: Run a One-Line Script
-        run: echo "Hello, world!"
+      # - name: Run a One-Line Script
+      #   run: echo "Hello, world!"
 
       - name: Login to GHCR
         run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
 
       - name: Build & Push Image
         run: |
-          IMAGE=ghcr.io/AnassAmazzar/odoo-project:dev
+          IMAGE=ghcr.io/anassamazzar/odoo-project:dev
           docker build -t $IMAGE .
           docker push $IMAGE
 
