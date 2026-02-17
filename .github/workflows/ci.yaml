@@ -5,9 +5,9 @@ on:
     branches: ["dev"]
 
 jobs:
-    build:
-        runs-on: ubuntu-latest
-        steps:
-            - uses: actions/checkout@v4
-            - name: Run a One-Line Script
-                run: echo "Hello, world!"
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run a One-Line Script
+        run: echo "Hello, world!"
