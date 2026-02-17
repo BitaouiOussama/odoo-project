@@ -3,7 +3,7 @@ name: CI Pipeline for odoo project
 on:
   push:
     branches:
-    - dev
+      - dev
 
 jobs:
   build:
