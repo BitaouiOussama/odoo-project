@@ -40,7 +40,4 @@ jobs:
         run: |
           IMG=${{ env.REGISTRY }}/anassamazzar/${{ env.IMAGE_NAME }}:dev
           docker build -t $IMG .
-          docker push $IMAGE
-
-
-
+          docker push $IMG
