@@ -4,6 +4,9 @@ on:
   push:
     branches:
       - dev
+env:
+  IMAGE_NAME: odoo-project
+  REGISTRY: ghcr.io
 
 jobs:
   build:
@@ -14,9 +17,21 @@ jobs:
       packages: write
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
       # - name: Run a One-Line Script
       #   run: echo "Hello, world!"
+      
+      - name: Lint Dockerfile with Hadolint
+        uses: hadolint/hadolint-action@v3.1.0
+        with:
+          dockerfile: Dockerfile
+          failure-threshold: error
+
+      - name: Validate docker-compose.yml
+        run: |
+          docker compose -f docker-compose.yml config > /dev/null
+          echo "✅ docker-compose.yml is valid"
 
       - name: Login to GHCR
         run: echo "${{ secrets.TOKEN_GHRC_AM }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
@@ -26,5 +41,6 @@ jobs:
           IMAGE=ghcr.io/anassamazzar/odoo-project:dev
           docker build -t $IMAGE .
           docker push $IMAGE
+
 
 
