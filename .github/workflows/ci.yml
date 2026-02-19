@@ -38,6 +38,9 @@ jobs:
 
       - name: Build & Push Image
         run: |
-          IMAGE=ghcr.io/anassamazzar/odoo-project:dev
-          docker build -t $IMAGE .
+          IMG=${{ env.REGISTRY }}/anassamazzar/${{ env.IMAGE_NAME }}:dev
+          docker build -t $IMG .
           docker push $IMAGE
+
+
+
