@@ -9,7 +9,7 @@ env:
   REGISTRY: ghcr.io
 
 jobs:
-  build:
+  lint:
     runs-on: ubuntu-latest
     
     permissions:
@@ -38,9 +38,6 @@ jobs:
 
       - name: Build & Push Image
         run: |
-          IMAGE=ghcr.io/anassamazzar/odoo-project:dev
-          docker build -t $IMAGE .
-          docker push $IMAGE
-
-
-
+          IMG=${{ env.REGISTRY }}/anassamazzar/${{ env.IMAGE_NAME }}:dev
+          docker build -t $IMG .
+          docker push $IMG
