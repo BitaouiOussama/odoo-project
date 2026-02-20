@@ -61,7 +61,7 @@ jobs:
   test:
     name: Test Odoo
     runs-on: ubuntu-latest
-    needs: security
+    needs: lint
 
     services:
       postgres:
@@ -108,6 +108,30 @@ jobs:
               --stop-after-init \
               -i "$MODULES" \
             || echo "⚠️ No testable modules found yet (normal for empty custom_addons)"
+
+  build-and-push:
+    name: Build & Push Docker Image
+    runs-on: ubuntu-latest
+    needs: [lint, security, test]
+
+    permissions:
+      contents: read
+      packages: write   # nécessaire pour GHCR
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      # Génère automatiquement les tags : latest, sha, branch name...
+      - name: Extract Docker metadata
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ env.REGISTRY }}/anassamazzar/${{ env.IMAGE_NAME }}
+          tags: |
+            type=ref,event=branch
+            type=sha,prefix=sha-
+            type=raw,value=latest,enable=${{ github.ref == 'refs/heads/main' }}
 
 
 
