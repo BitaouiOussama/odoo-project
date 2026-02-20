@@ -132,6 +132,8 @@ jobs:
             type=ref,event=branch
             type=sha,prefix=sha-
             type=raw,value=latest,enable=${{ github.ref == 'refs/heads/main' }}
+      - name: Debug tags
+        run: echo "${{ steps.meta.outputs.tags }}"
 
 
 
