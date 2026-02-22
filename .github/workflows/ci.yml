@@ -192,7 +192,7 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY}}
           script: |
             echo "🔄 Starting deployment on $(hostname)"
-
+            echo "-------------------------------------"
             echo "🔄 Pulling latest image..."
             cd /opt/odoo   # chemin du projet sur ton serveur
 
