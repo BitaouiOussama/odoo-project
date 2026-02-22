@@ -192,7 +192,7 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY}}
           script: |
             echo "🔄 Starting deployment on $(hostname)"
-            
+
             echo "🔄 Pulling latest image..."
             cd /opt/odoo   # chemin du projet sur ton serveur
 
@@ -200,7 +200,7 @@ jobs:
             echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u "${{ github.repository_owner }}" --password-stdin
 
             # Pull la nouvelle image
-            docker pull "${{ env.REGISTRY }}"/"${{ github.repository_owner }}"/"${{ env.IMAGE_NAME }}":dev
+            docker pull ${{ env.REGISTRY }}/bitaouioussama/${{ env.IMAGE_NAME }}:dev
 
             # Redémarre les conteneurs sans downtime
             docker compose pull
