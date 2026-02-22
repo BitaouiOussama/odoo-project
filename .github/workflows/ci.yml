@@ -190,16 +190,17 @@ jobs:
           host: ${{ secrets.SERVER_HOST}}
           username: ${{ secrets.SERVER_USER}}
           key: ${{ secrets.SSH_PRIVATE_KEY}}
-          run: |
+          script: |
+            echo "🔄 Starting deployment on $(hostname)"
+            
             echo "🔄 Pulling latest image..."
             cd /opt/odoo   # chemin du projet sur ton serveur
 
             # Login GHCR depuis le serveur
-            echo ${{ secrets.GITHUB_TOKEN }} | docker login ghcr.io \
-              -u ${{ github.actor }} --password-stdin
+            echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u "${{ github.repository_owner }}" --password-stdin
 
             # Pull la nouvelle image
-            docker pull ${{ env.REGISTRY }}/${{ github.repository_owner }}/${{ env.IMAGE_NAME }}:dev
+            docker pull "${{ env.REGISTRY }}"/"${{ github.repository_owner }}"/"${{ env.IMAGE_NAME }}":dev
 
             # Redémarre les conteneurs sans downtime
             docker compose pull
