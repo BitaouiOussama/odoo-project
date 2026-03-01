@@ -209,13 +209,12 @@ jobs:
             # Vérifie que tout est UP
             sleep 10
             docker compose ps
-            echo "✅ Deployment successful!"
+            echo "✅ Deployment successful"
 
 
 
 
-      # - name: Login to GHCR
-      #   run: echo "${{ secrets.TOKEN_GHRC_AM }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+
 
       # - name: Build & Push Image
       #   run: |
