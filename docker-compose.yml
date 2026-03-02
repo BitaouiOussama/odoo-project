@@ -29,6 +29,5 @@ services:
       #- /home/ubuntu/odoo/odoo-web-data:/var/lib/odoo
     networks:
       - odoo-net
-
 networks:
   odoo-net:
